@@ -16,7 +16,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
+    getRandomImages(all);
     return Scaffold(
       backgroundColor:Colors.black,
       appBar: new AppBar(
@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Row(
+                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     cardTemplate(), cardTemplate()],
@@ -41,6 +41,29 @@ class _MyAppState extends State<MyApp> {
           )
       ),
     );
+  }
+
+
+  List<Animal> getRandomImages(List<Animal> list){
+    var rng = new Random();
+    List<Animal> imageToShow =new List<Animal>() ;
+    List<int> randomGenerated = new List<int>();
+    int index = 0;
+    while(index <4){
+      var randomIndex= rng.nextInt(all.length);
+      randomGenerated.add(randomIndex);
+      bool exist = randomGenerated.contains(randomIndex);
+
+      if(!randomGenerated.contains(randomIndex)){
+ //     if(!imageToShow.contains( all.elementAt(randomIndex))){
+         index++;
+         imageToShow.add(all.elementAt(randomIndex));
+         randomGenerated.add(randomIndex);
+      }
+    }
+    print(imageToShow);
+    return imageToShow;
+
   }
 }
 
