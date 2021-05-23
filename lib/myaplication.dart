@@ -12,29 +12,29 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final List<Animal> all =allAnimals;
+  final List<Animal> all = allAnimals;
 
   @override
   Widget build(BuildContext context) {
-    getRandomImages(all);
+    List<Animal> animals = getRandomImages(all);
     return Scaffold(
-      backgroundColor:Colors.black,
+      backgroundColor: Colors.black,
       appBar: new AppBar(
       ),
       body: Center(
-          child:Container(
+          child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    cardTemplate(), cardTemplate()],
-                ),
-                CenterCard(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [cardTemplate(),cardTemplate()],
+                  children: [
+                    cardTemplate(animals[0]), cardTemplate(animals[1])],
+                ),
+                CenterCard(animals),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [cardTemplate(animals[2]), cardTemplate(animals[3])],
                 )
               ],
             ),
@@ -43,27 +43,27 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-
   List<Animal> getRandomImages(List<Animal> list){
     var rng = new Random();
-    List<Animal> imageToShow =new List<Animal>() ;
-    List<int> randomGenerated = new List<int>();
+    List<Animal> imageToShow = [] ;
+    List<int> randomGenerated = [];
     int index = 0;
     while(index <4){
       var randomIndex= rng.nextInt(all.length);
-      randomGenerated.add(randomIndex);
+     // randomGenerated.add(randomIndex);
       bool exist = randomGenerated.contains(randomIndex);
 
       if(!randomGenerated.contains(randomIndex)){
- //     if(!imageToShow.contains( all.elementAt(randomIndex))){
-         index++;
-         imageToShow.add(all.elementAt(randomIndex));
-         randomGenerated.add(randomIndex);
+        //     if(!imageToShow.contains( all.elementAt(randomIndex))){
+        index = index +1;
+        imageToShow.add(all.elementAt(randomIndex));
+        randomGenerated.add(randomIndex);
       }
     }
-    print(imageToShow);
+    //print(imageToShow);
     return imageToShow;
 
   }
+
 }
 

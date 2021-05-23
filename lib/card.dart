@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tow_flutter_app/list_of.dart';
 import 'package:tow_flutter_app/dragabbal_widget.dart';
 class CenterCard extends StatelessWidget {
-  final List<Animal> all =allAnimals;
-
+  List<Animal> all;
+  CenterCard(List<Animal> animals){
+    this.all = animals;
+  }
   @override
   Widget build(BuildContext context) {
       return Padding (
